@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="reset.css">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: left;
+			width: 100%;
+			background: #e9dfc7;
+		}
+		.m-read-content{
+			font-size: 0.28rem;
+			color: $555;
+			line-height: 0.6rem;
+			padding: 0.3rem;
+		}
+		.m-read-content h4{
+			font-size: 0.4rem;
+			color: #736357;
+			border-bottom: solid 0.02rem #736357;
+			letter-spacing: 0.04rem;
+		}
+		.m-read-content p{
+			text-indent: 2em;
+			margin: 0.5em 0;
+			letter-spacing: 0;
+			line-height: 0.48rem;
+		}
+		.u-tab{
+			width: 70%;
+			max-width: 10rem;
+			height: 0.68rem;
+			margin: 0.2rem auto;
+			line-height: 0.68rem;
+			border-radius: 0.16rem;
+			border:0.02rem solid #858382;
+			font-size: 0.24rem;
+			background: #000;
+			opacity: 0.9;
+		}
+		.u-tab li{
+			display: inline-block;
+			width: 49%;
+			text-align: center;
+			color: #fff;
+		}
+		.u-tab li:nth-child(1){
+			border-right: 0.02rem solid #858382;
+		}
+		.top-nav{
+			position: fixed;
+			top: 0;
+			height: 1rem;
+			width: 100%;
+			z-index: 9999;
+			background: #000;
+		}
+		.icon-back{
+			position: absolute;
+			top: 0.28rem;
+			left: 0.2rem;
+			width: 0.4rem;
+			height: 0.4rem;
+			background: url(img/arrow.png);
+			background-size: contain;
+		}
+		.nav-title{
+			position: absolute;
+			top: 0.32rem;
+			left: 0.84rem;
+			color: #d5d5d6;
+			font-size: 0.2rem;
+		}
+		.nav-pannel{
+			position: fixed;
+			bottom: 0;
+			height: 4.1rem;
+			width: 100%;
+			background-color: rgba(0,0,0,0.9);
+
+		}
+		.nav-pannel .child-mod{
+			padding: 0.1rem 0.2rem;
+			margin: 0.25rem;
+		}
+		.nav-pannel span{
+			color: #fff;
+			font-size: 0.2rem;
+			display: inline-block;
+			padding-left: 0.2rem;
+			padding-right: 0.4rem;
+		}
+		.nav-pannel .font-size-button{
+			background: none;
+			color: #fff;
+			font-size: 0.2rem;
+			border: 0.02rem solid #8c8c8c;
+			border-radius: 0.32rem;
+			padding: 0.05rem 0.7rem;
+			}	}
+	</style>
+</head>
+<body>
+	<div id="root" class="container">
+		<div id="top_nav" class="top-nav">
+			<div class="icon-back"></div>
+			<div class="nav-title">返回书城</div>
+		</div>
+		<div id="fiction_chapter_title"></div>
+		<div id="fiction_container" class="m-read-content">
+			<h4>我们爱过</h4>
+			<p>
+				我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次像天上的流星又为感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走
+			</p>
+			<p>我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场
+			</p>
+			<p>我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场
+			</p>
+			
+
+		</div>
+		<div class="m-button-bar">
+			<ul class="u-tab">
+				<li id="prev_button">上一章</li>
+				<li id="next_button">下一章</li>
+			</ul>
+		</div>
+		<div class="nav-pannel" id="font_container">
+			<div class="child-mod">
+				<span>字号</span>
+				<button id="large_font" class="font-size-button">大</button>
+				<button id="small_font" class="font-size-button">小</button>
+			</div>
+			<div class="child-mod">
+				<span>背景</span>
+			</div>
+			<div class="chile-mod">
+				<ul>
+					<li>
+						<div class="icon-box"></div>
+						<span>目录</span>
+					</li>
+					<li>
+						<div class="icon-box"></div>
+						<span>字体</span>
+					</li>
+					<li>
+						<div class="icon-box"></div>
+						<span>夜间</span>
+					</li>
+				</ul>
+			</div>
+
+
+
+		</div>
+	</div>
+	<script src="js/rem.js"></script>
+	<script src="js/zepto.js"></script>
+	<script src="js/base64.js"></script>
+</body>
+</html>
