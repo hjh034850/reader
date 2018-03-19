@@ -14,7 +14,7 @@
 		}
 		.m-read-content{
 			font-size: 0.28rem;
-			color: $555;
+			color: #555;
 			line-height: 0.6rem;
 			padding: 0.3rem;
 		}
@@ -100,8 +100,61 @@
 			font-size: 0.2rem;
 			border: 0.02rem solid #8c8c8c;
 			border-radius: 0.32rem;
-			padding: 0.05rem 0.7rem;
-			}	}
+			padding: 0.05rem 0.6rem;
+			}	
+		.nav-pannel .bk-container{
+			width: 0.6rem;
+			height: 0.6rem;
+			border-radius: 50%;
+			background: #fff;
+			display: inline-block;
+			position: relative;
+			vertical-align: -0.28rem;
+		} 
+		.nav-pannel .bk-container .bk-container-current{
+			width: 0.64rem;
+			height: 0.64rem;
+			border-radius: 50%;
+			border:0.02rem solid #ff7800;
+			display: inline-block;
+			position: absolute;
+			top: -0.04rem;
+			left: -0.04rem;
+		}
+		.nav-pannel .list{
+			padding-left: 0.3rem;
+			margin-top: 0.6rem;
+		}
+		.nav-pannel .list ul{
+			overflow: hidden;
+			margin-bottom: 0.15rem;
+		}
+		.nav-pannel .list li{
+			float: left;
+			margin-left: 0.4rem;
+			margin-right: 0.3rem;
+		}
+		.nav-pannel .list li:nth-child(3){
+			margin-right: 0;
+		}
+		.nav-pannel .list .icon-box{
+			height: 0.4rem;
+			width: 1.2rem;
+			
+			margin-bottom: 0.15rem;
+		}
+		.nav-pannel .list .imgone{
+			background: url(img/nav.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.nav-pannel .list .imgtwo{
+			background: url(img/font.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.nav-pannel .list .imgthree{
+			background: url(img/night.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
 	</style>
 </head>
 <body>
@@ -137,25 +190,26 @@
 			</div>
 			<div class="child-mod">
 				<span>背景</span>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
 			</div>
-			<div class="chile-mod">
+			<div class="child-mod list">
 				<ul>
 					<li>
-						<div class="icon-box"></div>
+						<div class="icon-box imgone"></div>
 						<span>目录</span>
 					</li>
 					<li>
-						<div class="icon-box"></div>
+						<div class="icon-box imgtwo"></div>
 						<span>字体</span>
 					</li>
 					<li>
-						<div class="icon-box"></div>
+						<div class="icon-box imgthree"></div>
 						<span>夜间</span>
 					</li>
 				</ul>
 			</div>
-
-
 
 		</div>
 	</div>
