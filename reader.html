@@ -90,7 +90,7 @@
 			color: #fff;
 			font-size: 0.2rem;
 			display: inline-block;
-			padding-left: 0.2rem;
+			padding-left: 0.15rem;
 			padding-right: 0.4rem;
 		}
 		.nav-pannel .font-size-button{
@@ -105,10 +105,10 @@
 			width: 0.6rem;
 			height: 0.6rem;
 			border-radius: 50%;
-			background: #fff;
 			display: inline-block;
 			position: relative;
 			vertical-align: -0.28rem;
+			margin-right: 0.1rem;
 		} 
 		.nav-pannel .bk-container .bk-container-current{
 			width: 0.64rem;
@@ -119,6 +119,18 @@
 			position: absolute;
 			top: -0.04rem;
 			left: -0.04rem;
+		}
+		.nav-pannel .bk-container:nth-child(2){
+			background: #fff;
+		}		
+		.nav-pannel .bk-container:nth-child(3){
+			background: #a9c560;
+		}
+		.nav-pannel .bk-container:nth-child(4){
+			background: #c5ae60;
+		}
+		.nav-pannel .bk-container:nth-child(5){
+			background: #60c5a8;
 		}
 		.nav-pannel .list{
 			padding-left: 0.3rem;
@@ -148,7 +160,6 @@
 		.nav-pannel .list .icon-box{
 			height: 0.3rem;
 			width: 1.2rem;
-			
 			margin-bottom: 0.15rem;
 		}
 		.nav-pannel .list .imgone{
@@ -211,6 +222,15 @@
 				<div class="bk-container">
 					<div class="bk-container-current"></div>
 				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
 			</div>
 			<div class="child-mod list" style="display: none">
 				<ul>
@@ -231,21 +251,26 @@
 						<span>白天</span>
 					</li>
 				</ul>
-
 			</div>
 		</div>
 	</div>
 	<script src="js/rem.js"></script>
 	<script src="js/zepto.js"></script>
 	<script src="jquery.min.js"></script>
+	<script src="js/jquery.jsonp.js"></script>
+	<script src="js/jquery.base64.js"></script>
 	<script>
 		var hFontSize = 0.4;
-		var fictionFontSize = localStorage.getItem('font-size');
-		fictionFontSize = parseInt(fictionFontSize);
+		var fictionFontSize = localStorage.getItem('font-size');	
+		var backgroundColor = localStorage.getItem('bg-color');	
 		if(!fictionFontSize){
 			fictionFontSize = 0.28;
 		}
-		$('.m-read-content').css('font-size', localStorage.getItem('font-size')+ 'rem');
+		if(!backgroundColor){
+			backgroundColor = '#e9dfc7';
+		}
+		$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
+		$('body').css('background',backgroundColor);
 		$('.artical-action-mid').on('click',function(){
 			if($('.font').css('display') == 'block'){
 				$('.child-mod,#top_nav').toggle();
@@ -255,26 +280,67 @@
 		});
 		$('.active-li').on('click',function(){
 			$('.font').toggle();
-			//$('.list').css('display','block');				
 			})
 		$('.nightLi').on('click',function(){
 			$(this).css('display','none');
 			$('.dayLi').css('display','block');
+			$('body').css('background','#000');
 		});
 		$('.dayLi').on('click',function(){
 			$(this).css('display','none');
 			$('.nightLi').css('display','block');
+			$('body').css('background','#fff');
 		})
 		$('#large_font').on('click',function(){
 			fictionFontSize = fictionFontSize + 0.01;
 			localStorage.setItem('font-size',fictionFontSize);
-			$('.m-read-content').css('font-size', localStorage.getItem('font-size')+ 'rem');
+			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
 		})
 		$('#small_font').on('click',function(){
 			fictionFontSize = fictionFontSize - 0.01;
 			localStorage.setItem('font-size',fictionFontSize);
-			$('.m-read-content').css('font-size', localStorage.getItem('font-size')+ 'rem');
+			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
+		})		
+		$('.bk-container').on('click',function(){
+			var bgColor = $(this).css('background');
+			$('body').css('background', bgColor);
+			localStorage.setItem('bg-color',bgColor);			
 		})
+
+
+
+
+
+
+
+
+		var getBjson = function(url,callback){
+			return $.jsonp({
+				url:url,
+				cache:true,
+				callback:'duokan_fiction_chapter',
+				success:function(result){
+
+				}
+			});
+
+		}
+		function readerModel(){					//数据交互
+			var getFictionInfo = function(){
+				$.get('data/chapter.json',function(){
+					console.log(this);
+				},'json')
+			}
+			getFictionInfo();
+			var getcurChapterContent = function(chapter_id){
+				$.get('data/data' +chapter_id +'.json',function(data){
+					if(dat.result == 0){
+						var url = data.jsonp;
+					}
+				},'json')
+			}
+		}
+		readerModel();
 	</script>
 </body>
 </html>
