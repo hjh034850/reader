@@ -196,14 +196,7 @@
 		<div id="fiction_chapter_title"></div>
 		<div class="artical-action-mid"></div>
 		<div id="fiction_container" class="m-read-content">
-			<h4>我们爱过</h4>
-			<p>
-				我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次像天上的流星又为感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走
-			</p>
-			<p>我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场
-			</p>
-			<p>我们爱得到过自己想要的想象着会有很好的未来有你有我可是多年以后蓦然回首发现自己一无所有真的真的一无所有可那时我们没有了继续追逐的勇气没有了再爱一次的勇气我们的存在或许只是一次巧合可是为什么我没有渴望被爱如果我们像天上的流星又为什么会真实存在感谢我们曾经遇见感谢我们曾经寒暄谢谢你们带我走过寒暑冬夏青春不会有散场
-			</p>
+
 		</div>
 		<div class="m-button-bar">
 			<ul class="u-tab">
@@ -257,18 +250,25 @@
 	<script src="js/rem.js"></script>
 	<script src="js/zepto.js"></script>
 	<script src="jquery.min.js"></script>
-	<script src="js/jquery.jsonp.js"></script>
-	<script src="js/jquery.base64.js"></script>
+	<!-- <script src="js/jquery.jsonp.js"></script>
+	<script src="js/jquery.base64.js"></script> -->
 	<script>
 		var hFontSize = 0.4;
-		var fictionFontSize = localStorage.getItem('font-size');	
-		var backgroundColor = localStorage.getItem('bg-color');	
+
+		var fictionFontSize = localStorage.getItem('font-size');
+		var backgroundColor = localStorage.getItem('bg-color');
+		var index = localStorage.getItem('index');
 		if(!fictionFontSize){
 			fictionFontSize = 0.28;
 		}
 		if(!backgroundColor){
 			backgroundColor = '#e9dfc7';
 		}
+		if(!index){
+		    index = 1;
+		}
+
+
 		$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
 		$('body').css('background',backgroundColor);
 		$('.artical-action-mid').on('click',function(){
@@ -294,17 +294,36 @@
 		$('#large_font').on('click',function(){
 			fictionFontSize = fictionFontSize + 0.01;
 			localStorage.setItem('font-size',fictionFontSize);
+			console.log(fictionFontSize)
 			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
 		})
 		$('#small_font').on('click',function(){
 			fictionFontSize = fictionFontSize - 0.01;
 			localStorage.setItem('font-size',fictionFontSize);
 			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
-		})		
+		})
 		$('.bk-container').on('click',function(){
 			var bgColor = $(this).css('background');
 			$('body').css('background', bgColor);
 			localStorage.setItem('bg-color',bgColor);			
+		});
+
+        loadArticle(index);
+        //下一章
+		$('#next_button').on('click',function(){
+		    index++;
+		    if(index == 7){
+		        index = 6;
+			}
+		    loadArticle(index)
+		})
+		//上一章
+		$('#prev_button').on('click',function(){
+		    index--;
+		    if(index == 0){
+		        index = 1;
+			}
+		    loadArticle(index);
 		})
 
 
@@ -312,51 +331,17 @@
 
 
 
-		var getBjson = function(url,callback){
-			return $.jsonp({
-				url:url,
-				cache:true,
-				callback:'duokan_fiction_chapter',
-				success:function(result){
-					var data = $.base64.decode(result);
-					var json = decodeURIComponent(escape(data));
-					callback(data);
-				}
-			});
 
-		}
-		var Chapter_id;
+        //加载文章内容
+        function loadArticle(index){
+            $.get('data/test'+index+'.txt',function(data){
+                $('.m-read-content').html(data);
+                localStorage.setItem('index',index);
+            },'text');
+        }
 
-		function readerModel(){					//数据交互
-			var init = function(){
-				getFictionInfo(function(){
-					getcurChapterContent(Chapter_id,function(){
 
-					})
-				});
-			}
-			init();
-			var getFictionInfo = function(callback){
-				$.get('data/chapter.json',function(){
-					Chapter_id  =data.chapters[1].chapter_id;
-					callback && callback();
-				},'json')
-			}
-			getFictionInfo();
-			var getcurChapterContent = function(chapter_id,data){
-				$.get('data/data' +chapter_id +'.json',function(data){
-					if(dat.result == 0){
-						var url = data.jsonp;
-						getBjson(url,function(data){
-								callback && callback(data);
-						})
-					}
-				},'json')
-			}
-			getcurChapterContent();
-			
-		}
-		readerModel();
+
 	</script>
 </body>
 </html>
