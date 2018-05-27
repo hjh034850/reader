@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="reset.css">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: left;
+			width: 100%;
+			background: #e9dfc7;
+		}
+		#root{
+			position: relative;
+		}
+		.m-read-content{
+			font-size: 0.28rem;
+			color: #555;
+			line-height: 0.6rem;
+			padding: 0.3rem;
+		}
+		.m-read-content h4{
+			font-size: 0.4rem;
+			color: #736357;
+			border-bottom: solid 0.02rem #736357;
+			letter-spacing: 0.04rem;
+		}
+		.m-read-content p{
+			text-indent: 2em;
+			margin: 0.5em 0;
+			letter-spacing: 0;
+			line-height: 0.48rem;
+		}
+		.u-tab{ 
+			width: 70%;
+			max-width: 10rem;
+			height: 0.68rem;
+			margin: 0.2rem auto;
+			line-height: 0.68rem;
+			border-radius: 0.16rem;
+			border:0.02rem solid #858382;
+			font-size: 0.24rem;
+			background: #000;
+			opacity: 0.9;
+		}
+		.u-tab li{
+			display: inline-block;
+			width: 49%;
+			text-align: center;
+			color: #fff;
+		}
+		.u-tab li:nth-child(1){
+			border-right: 0.02rem solid #858382;
+		}
+		.top-nav{
+			position: fixed;
+			top: 0;
+			height: 1rem;
+			width: 100%;
+			z-index: 9999;
+			background: #000;
+		}
+		.icon-back{
+			position: absolute;
+			top: 0.28rem;
+			left: 0.2rem;
+			width: 0.4rem;
+			height: 0.4rem;
+			background: url(img/arrow.png);
+			background-size: contain;
+		}
+		.nav-title{
+			position: absolute;
+			top: 0.32rem;
+			left: 0.84rem;
+			color: #d5d5d6;
+			font-size: 0.22rem;
+		}
+		.nav-pannel{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background-color: rgba(0,0,0,0.9);
+
+		}
+		.nav-pannel .child-mod{
+			padding: 0.1rem 0.2rem;
+			margin: 0.25rem;
+		}
+		.nav-pannel span{
+			color: #fff;
+			font-size: 0.2rem;
+			display: inline-block;
+			padding-left: 0.15rem;
+			padding-right: 0.4rem;
+		}
+		.nav-pannel .font-size-button{
+			background: none;
+			color: #fff;
+			font-size: 0.2rem;
+			border: 0.02rem solid #8c8c8c;
+			border-radius: 0.32rem;
+			padding: 0.05rem 0.6rem;
+			}	
+		.nav-pannel .bk-container{
+			width: 0.6rem;
+			height: 0.6rem;
+			border-radius: 50%;
+			display: inline-block;
+			position: relative;
+			vertical-align: -0.28rem;
+			margin-right: 0.1rem;
+		} 
+		.nav-pannel .bk-container .bk-container-current{
+			width: 0.64rem;
+			height: 0.64rem;
+			border-radius: 50%;
+			border:0.02rem solid #ff7800;
+			display: inline-block;
+			position: absolute;
+			top: -0.04rem;
+			left: -0.04rem;
+		}
+		.nav-pannel .bk-container:nth-child(2){
+			background: #fff;
+		}		
+		.nav-pannel .bk-container:nth-child(3){
+			background: #a9c560;
+		}
+		.nav-pannel .bk-container:nth-child(4){
+			background: #c5ae60;
+		}
+		.nav-pannel .bk-container:nth-child(5){
+			background: #60c5a8;
+		}
+		.nav-pannel .list{
+			padding-left: 0.3rem;
+			margin-top: 0.3rem;
+			margin-left: auto;
+		}
+		.nav-pannel .list ul{
+			position: relative;
+			overflow: hidden;
+			margin-bottom: 0.15rem;
+		}
+		.nav-pannel .list li{
+			float: left;
+			margin-left: 0.4rem;
+			margin-right: 0.3rem;
+		}
+		.nav-pannel .list li:nth-child(3){
+			margin-right: 0;
+		}
+		.nav-pannel .list li:nth-child(4){
+			position: absolute;
+			right: 0.22rem;
+			top: 0;
+			margin-right: 0;
+			display: none;
+		}
+		.nav-pannel .list .icon-box{
+			height: 0.3rem;
+			width: 1.2rem;
+			margin-bottom: 0.15rem;
+		}
+		.nav-pannel .list .imgone{
+			background: url(img/nav.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.nav-pannel .list .imgtwo{
+			background: url(img/font.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.nav-pannel .list .imgthree{
+			background: url(img/night.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.nav-pannel .list .imgfour{
+			background: url(img/day.png) 0.2rem center no-repeat;
+			background-size: contain;
+		}
+		.artical-action-mid{
+			position: fixed;
+			z-index: 10002;
+			width: 100%;
+			height: 40%;
+			top: 30%;
+		}
+		.catalog{
+			position: fixed;
+			top: 0;
+			left: 0rem;
+			background: rgba(0,0,0,0.5);
+			z-index:10004;
+			display: none;
+			width: 100%;
+			height: 100%;
+
+			
+		}
+		.catalog ul{
+			padding-top: 0.2rem;
+			height: 11rem;
+			width: 3rem;
+			background: #fff;
+		}
+		.catalog li{
+			width: 3rem;
+			height: 1rem;
+			text-align: center;
+			line-height: 1rem;
+			border-bottom: 0.05rem solid #eee;
+		}
+	</style>
+</head>
+<body>
+	<div id="root" class="container">
+		<div id="top_nav" class="top-nav" style="display: none">
+			<div class="icon-back"></div>
+			<div class="nav-title">返回书城</div>
+		</div>
+		<div id="fiction_chapter_title"></div>
+		<div class="artical-action-mid"></div>
+		<div id="fiction_container" class="m-read-content">
+
+		</div>
+		<div class="m-button-bar">
+			<ul class="u-tab">
+				<li id="prev_button">上一章</li>
+				<li id="next_button">下一章</li>
+			</ul>
+		</div>
+		<div class="nav-pannel" id="font_container">
+			<div class="child-mod font" style="display: none">
+				<span>字号</span>
+				<button id="large_font" class="font-size-button">大</button>
+				<button id="small_font" class="font-size-button">小</button>
+			</div>
+			<div class="child-mod font" style="display: none">
+				<span>背景</span>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+				<div class="bk-container">
+					<div class="bk-container-current"></div>
+				</div>
+			</div>
+			<div class="child-mod list" style="display: none">
+				<ul>
+					<li class="cataButton">
+						<div class="icon-box imgone"></div>
+						<span>目录</span>
+					</li>
+					<li class="active-li">
+						<div class="icon-box imgtwo"></div>
+						<span>字体</span>
+					</li>
+					<li class="nightLi">
+						<div class="icon-box imgthree"></div>
+						<span>夜间</span>
+					</li>
+					<li class="dayLi">
+						<div class="icon-box imgfour"></div>
+						<span>白天</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="catalog" style="display: none">
+			<ul>
+				<li class="catalogList">第一章</li>
+				<li class="catalogList">第二章</li>
+				<li class="catalogList">第三章</li>
+				<li class="catalogList">第四章</li>
+				<li class="catalogList">第五章</li>
+				<li class="catalogList">第六章</li>
+				<li class="catalogList">第七章</li>
+				<li class="catalogList">第八章</li>
+				<li class="catalogList">第九章</li>
+				<li class="catalogList">第十章</li>
+			</ul>
+		</div>
+	</div>
+	<script src="js/rem.js"></script>
+
+	<script src="jquery.min.js"></script>
+	<script src="js/zepto.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<!-- <script src="js/jquery.jsonp.js"></script>
+	<script src="js/jquery.base64.js"></script> -->
+	<script>
+		var hFontSize = 0.4;
+
+		var fictionFontSize = localStorage.getItem('font-size');
+		var backgroundColor = localStorage.getItem('bg-color');
+		var index = localStorage.getItem('index');
+		if(!fictionFontSize){
+			fictionFontSize = 0.28;
+		}
+		if(!backgroundColor){
+			backgroundColor = '#e9dfc7';
+		}
+		if(!index){
+		    index = 1;
+		}
+
+
+		$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
+		$('body').css('background',backgroundColor);
+		$('.artical-action-mid').on('click',function(){
+			if($('.font').css('display') == 'block'){
+				$('.child-mod,#top_nav').toggle();
+			}else{
+			$('.list,#top_nav').toggle();
+			}
+		});
+		$('.active-li').on('click',function(){
+			$('.font').toggle();
+			})
+		$('.nightLi').on('click',function(){
+			$(this).css('display','none');
+			$('.dayLi').css('display','block');
+			$('body').css('background','#000');
+		});
+		$('.dayLi').on('click',function(){
+			$(this).css('display','none');
+			$('.nightLi').css('display','block');
+			$('body').css('background','#fff');
+		})
+		$('#large_font').on('click',function(){
+			fictionFontSize = fictionFontSize + 0.01;
+			localStorage.setItem('font-size',fictionFontSize);
+			console.log(fictionFontSize)
+			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
+		})
+		$('#small_font').on('click',function(){
+			fictionFontSize = fictionFontSize - 0.01;
+			localStorage.setItem('font-size',fictionFontSize);
+			$('.m-read-content').css('font-size', fictionFontSize+ 'rem');
+		})
+		$('.bk-container').on('click',function(){
+			var bgColor = $(this).css('background');
+			$('body').css('background', bgColor);
+			localStorage.setItem('bg-color',bgColor);			
+		});
+		//加载文章
+        loadArticle(index);
+        //下一章
+		$('#next_button').on('click',function(){
+		    index++;
+		    if(index == 7){
+		        index = 6;
+			}
+		    loadArticle(index)
+		})
+		//上一章
+		$('#prev_button').on('click',function(){
+		    index--;
+		    if(index == 0){
+		        index = 1;
+			}
+		    loadArticle(index);
+		})
+
+
+		$('.cataButton').on('click',function(){
+            $('.catalog').css('display','block').find('li').on('tap',function(e){
+                $num = $(this).index() +1;
+                loadArticle($num);
+                e.stopPropagation();
+            }).end().on('tap',function(){
+              $(this).css('display','none');
+			})
+		})
+
+
+
+
+        //加载文章内容
+        function loadArticle(index){
+            $.get('data/test'+index+'.txt',function(data){
+                $('.m-read-content').html(data);
+                localStorage.setItem('index',index);
+            },'text');
+        }
+
+
+
+	</script>
+</body>
+</html>
